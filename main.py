@@ -56,17 +56,25 @@ class SlowedInsertionSort():
 
 class SlowedBubbleSort():
     def __init__(self, lst):
-        self.i =0
         self.lst = lst
+        self.i = len(self.lst)-1
+    def one_step(self):
+        for j in range(self.i):
+            if self.lst[j]>self.lst[j+1]:
+                temp = self.lst[j]
+                self.lst[j] = self.lst[j+1]
+                self.lst[j+1] = temp
+
     def sort(self):        
-        for i in range(start=len(self.lst)-1, stop=0):
+        for i in range(len(self.lst)-1, 0, -1):
             for j in range(i):
                 if self.lst[j]>self.lst[j+1]:
                     temp = self.lst[j]
                     self.lst[j] = self.lst[j+1]
                     self.lst[j+1] = temp
 
-amt = 100
+
+amt = 200
 thelist = np.random.randint(500, size=amt)
 # print(thelist)
 # sort(lst=thelist)
@@ -80,7 +88,7 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption(window_title)
 
 # Main loop
-select = SlowedInsertionSort(lst=thelist)
+select = SlowedBubbleSort(lst=thelist)
 start_time = time.time()
 stop = False
 dt = 0.05
@@ -93,18 +101,18 @@ while running:
     
     x=10
     for i in thelist:
-        pygame.draw.rect(screen, (0,0,0), (x, 580-i, 8, i))
-        x+=10
+        pygame.draw.rect(screen, (0,0,0), (x, 580-i, 4, i))
+        x+=6
 
     time.sleep(dt)
     if not stop:
         select.one_step()
 
-    if select.i+1 > len(thelist)-1 and not stop:
+    if select.i+1 > len(thelist)-1 and stop:
         
         stop = True
     else:
-        select.i+=1
+        select.i-=1
     
     # Update the display
     pygame.display.flip()
