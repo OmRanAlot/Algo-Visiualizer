@@ -2,8 +2,9 @@ import pygame
 import numpy as np
 import time
 from sortingAlgo import *
-  
 
+
+#create the list with amt elements
 amt = 100
 thelist = np.random.randint(500, size=amt)
 thelist = list(thelist)
@@ -16,10 +17,10 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption(window_title)
 
 
-select = SlowedMergeSort(lst=thelist)
-start_time = time.time()
+select = SlowedSelectionSort(lst=thelist)
+
 stop = False
-dt = 0.3
+dt = 0.1
 running = True
 
 while running:

@@ -4,11 +4,14 @@ class SlowedSelectionSort():
         self.i = 0
 
     def one_step(self):
-        min_idx = self.i
-        for k in range(self.i+1, len(self.lst)):
-            if self.lst[min_idx] > self.lst[k]:
-                min_idx = k
-        self.lst[self.i], self.lst[min_idx] = self.lst[min_idx], self.lst[self.i]
+        try:
+            min_idx = self.i
+            for k in range(self.i+1, len(self.lst)):
+                if self.lst[min_idx] > self.lst[k]:
+                    min_idx = k
+            self.lst[self.i], self.lst[min_idx] = self.lst[min_idx], self.lst[self.i]
+        except:
+            pass
 
     def sort(self):
         for i in range(len(self.lst)):
@@ -24,12 +27,16 @@ class SlowedInsertionSort():
         self.i =0
 
     def one_step(self):
-        key = self.lst[self.i]
-        j = self.i-1
-        while j >= 0 and key < self.lst[j] :
-            self.lst[j + 1] = self.lst[j]
-            j -= 1
-        self.lst[j + 1] = key
+        try:
+            key = self.lst[self.i]
+            j = self.i-1
+            while j >= 0 and key < self.lst[j] :
+                self.lst[j + 1] = self.lst[j]
+                j -= 1
+            self.lst[j + 1] = key
+        except:
+            pass
+       
 
     def sort(self, lst):
         # Traverse through 1 to len(arr)
@@ -94,24 +101,6 @@ class SlowedMergeSort():
 
                 leftMostElement+= width*2
             width *=2
-
-    ''' def iterativeMerge(self, array, left, mid, right):
-        subArrayOne = mid - left + 1
-        subArrayTwo = right - mid
-
-        leftArray = [0] * subArrayOne
-        rightArray = [0] * subArrayTwo
-
-        # Copy data to temp arrays leftArray[] and rightArray[]
-        for i in range(subArrayOne):
-            leftArray[i] = array[left + i]
-        for j in range(subArrayTwo):
-            rightArray[j] = array[mid + 1 + j]
-
-        indexOfSubArrayOne = 0  # Initial index of first sub-array
-        indexOfSubArrayTwo = 0  # Initial index of second sub-array
-        indexOfMergedArray = left  # Initial index of merged array
-'''
     
     def merge(self, array, left, mid, right):
         subArrayOne = mid - left + 1
